@@ -1,0 +1,26 @@
+start
+<div>
+  <mat-form-field appearance="fill">
+    <mat-label>בחר שם</mat-label>
+    <mat-select
+      [(ngModel)]="selectedValue"
+      name="displayName"
+      (valueChange)="selectCity($event)"
+    >
+      <mat-option
+        *ngFor="let user of users$ | async"
+        [value]="user.displayName"
+      >
+        {{ user.displayName }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
+</div>
+
+
+<ng-container *ngFor="let user of users$ | async | filterByArea: search">
+  <div>
+    {{ user.displayName }}
+  </div>
+</ng-container>
